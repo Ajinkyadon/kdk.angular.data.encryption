@@ -1,0 +1,110 @@
+<div class="wrapper">
+        <app-topnavbar></app-topnavbar>
+        <app-asidenavbar></app-asidenavbar>
+        <div class="content-wrapper" style="min-height: 1126px;">
+                <!-- Content Header (Page header) -->
+                <section class="content-header">
+                  <h1>
+                    City Setting
+                  </h1>
+                  <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-cog"></i> Home</a></li>
+                    <li><a href="#">City Setting</a></li>
+                    <!-- <li class="active">User profile</li> -->
+                  </ol>
+                </section>
+                <section class="content">
+                        <div class="row">
+                                <div class="col-md-12">
+                                <div class="nav-tabs-custom">
+                                  <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#cityconfig" data-toggle="tab" aria-expanded="true">City</a></li>
+                                    <li class=""><a href="#cabtypeconfig" data-toggle="tab" aria-expanded="false">Cab Type</a></li>
+                                    <li class=""><a href="#ratecardconfig" data-toggle="tab" aria-expanded="false">Rate Card </a></li>
+                                    
+                                  </ul>
+                                  
+                                  <div class="tab-content">
+                                    <div class="tab-pane active" id="cityconfig">
+                                          <div class="row">
+                                                  <div class="col-md-6">
+                                                          <div class="box box-primary">
+                                                                  <div class="box-header with-border">
+                                                                    <!-- <h3 class="box-title">Quick Example</h3> -->
+                                                                  </div>
+                                                                  <!-- /.box-header -->
+                                                                  <!-- form start -->
+                                                                  <form role="form">
+                                                                    <div class="box-body" *ngIf="customerSetting">
+                                                                        
+                                                                      <div class="form-group" >
+                                                                        <label for="exampleInputEmail1">Area Limit Radius In KM</label>
+                                                                        <input type="number" class="form-control" [(ngModel)]="customerSetting.areaLimitRadiusInKM" name='areaLimitRadiusInKM' placeholder="Response Send Waiting Time In Sec">
+                                                                      </div>
+                                                                      <div class="form-group" >
+                                                                          <label for="exampleInputEmail1">Maximum Cabs Allocate For One Booking</label>
+                                                                          <input type="number" class="form-control" [(ngModel)]="customerSetting.maximumCabsAllocateForOneBooking" name='maximumCabsAllocateForOneBooking' placeholder="Response Send Waiting Time In Sec">
+                                                                      </div>
+                                                                      <div class="form-group">
+                                                                          <label for="exampleInputEmail1">Response Waiting Time In Sec</label>
+                                                                          <input type="number" class="form-control" [(ngModel)]="customerSetting.responseWaitingTimeInSec" name='responseWaitingTimeInSec' placeholder="Response Send Waiting Time In Sec">
+                                                                      </div>
+                                                                      
+                                                                    </div>
+                                                                    <!-- /.box-body -->
+                                                      
+                                                                    <div class="box-footer">
+                                                                      <button type="submit" class="btn btn-primary" (click)="UpdateCustomerAppSetting(customerSetting)">Update</button>
+                                                                    </div>
+                                                                  </form>
+                                                                </div>
+                                                  </div>
+                                          </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="cabtypeconfig">
+                                          <div class="row">
+                                                  <div class="col-md-6">
+                                                          <div class="box box-primary">
+                                                                  <div class="box-header with-border">
+                                                                    <!-- <h3 class="box-title">Quick Example</h3> -->
+                                                                  </div>
+                                                                  <!-- /.box-header -->
+                                                                  <!-- form start -->
+                                                                  <form role="form">
+                                                                    <div class="box-body">
+                                                                      <div class="form-group" *ngIf="driverSetting">
+                                                                        <label for="exampleInputEmail1">Response Send Waiting Time In Sec</label>
+                                                                        <input type="number" class="form-control" [(ngModel)]="driverSetting.responseSendWaitingTimeInSec" name='responseSendWaitingTimeInSec' placeholder="Response Send Waiting Time In Sec">
+                                                                      </div>
+                                                                      
+                                                                    </div>
+                                                                    <!-- /.box-body -->
+                                                      
+                                                                    <div class="box-footer">
+                                                                      <button type="submit" class="btn btn-primary" (click)="UpdateDriverAppSetting(driverSetting)">Update</button>
+                                                                    </div>
+                                                                  </form>
+                                                                </div>
+                                                  </div>
+                                          </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane active" id="ratecardconfig">
+                                            <div class="row">
+                                                    <div class="col-md-6">
+                                                    </div>
+                                            </div>   
+                                      </div>
+                                    <!-- /.tab-pane -->
+                                  </div>
+                                  <!-- /.tab-content -->
+                                </div>
+                                <!-- /.nav-tabs-custom -->
+                              </div>
+                            </div>
+                </section>    
+              </div>
+
+        <app-footernavbar></app-footernavbar>
+</div>

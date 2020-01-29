@@ -1,0 +1,65 @@
+<aside class="main-sidebar">
+  <!-- sidebar: style can be found in sidebar.less -->
+  <section class="sidebar" style="height: auto;">
+    <!-- Sidebar user panel -->
+    <div class="user-panel" *ngIf="auth.admin$ | async as user">
+      <div class="pull-left image">
+        <img [src]="user.photoURL" class="img-circle" alt="User Image">
+      </div>
+      <div class="pull-left info">
+        <p>{{user.displayName}}</p>
+        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+      </div>
+    </div>
+    
+    <!-- search form -->
+    <form action="#" method="get" class="sidebar-form">
+      <div class="input-group">
+        <input type="text" name="q" class="form-control" placeholder="Search...">
+        <span class="input-group-btn">
+                <button type="submit" name="search" id="search-btn" class="btn btn-flat">
+                  <i class="fa fa-search"></i>
+                </button>
+              </span>
+      </div>
+    </form>
+   
+    <ul class="sidebar-menu">
+        <li class="header">MAIN NAVIGATION</li>
+        <li routerLinkActive="active">
+            <a routerLink="/dashboard" >
+              <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+            </a>
+        </li>
+        
+        <li routerLinkActive="active">
+            <a routerLink="/employee" >
+              <i class="fa fa-users"></i> <span>Employee</span>
+            </a>
+        </li>
+        <li routerLinkActive="active">
+          <a routerLink="/complaint" >
+            <i class="fa fa-calendar"></i> <span>Complaints</span>
+          </a>
+       </li>
+       <li routerLinkActive="active">
+        <a routerLink="/appSetting" >
+          <i class="fa fa-cog"></i> <span>App Setting</span>
+        </a>
+      </li>
+      <li routerLinkActive="active">
+          <a routerLink="/city" >
+            <i class="fa fa-map-o"></i> <span>City</span>
+          </a>
+      </li>
+    
+       
+    
+        
+        
+        
+      </ul>
+
+  </section>
+  <!-- /.sidebar -->
+</aside>
