@@ -21,6 +21,7 @@ import { ComplaintComponent } from './complaint/complaint.component';
 import { AppSettingComponent } from './app-setting/app-setting.component';
 import { CityComponent } from './city/city.component';
 import { EncryptDecryptService } from 'src/app/services/encryptdecrypt/encrypt-decrypt.service';
+import { CustomerComponent } from './customer/customer.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { EncryptDecryptService } from 'src/app/services/encryptdecrypt/encrypt-d
     ComplaintComponent,
     AppSettingComponent,
     CityComponent,
+    CustomerComponent,
     
     
   ],

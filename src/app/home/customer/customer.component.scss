@@ -1,0 +1,29 @@
+
+:host { 
+    ::ng-deep {
+      * {
+        box-sizing: border-box;
+      }
+      ng2-smart-table { 
+        font-size: 14px; 
+     }
+     #contentDocuments {
+      height: 500px;
+    }
+     tr:nth-child(odd){background-color: #ffffff}
+     .smart-table-container{overflow-x: scroll; }
+     .smart-table-Vertical{overflow-y: scroll; }
+     table{
+        tr {
+          td,th{
+            
+            min-width: 150px;
+          }
+          td,th:first-child{
+             min-width: 80px;
+           }
+        }
+      }
+    }
+  }
+  

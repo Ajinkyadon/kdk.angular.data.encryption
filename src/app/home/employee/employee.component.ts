@@ -13,90 +13,90 @@ import { EncryptionService } from 'angular-encryption-service';
   styleUrls: ['./employee.component.scss']
 })
 export class EmployeeComponent implements OnInit {
-  title:string="Employee Master";
-  subtitle:string="employee";
-  employee:any;
-  testt=[
-    {value: 'MANAGER', title: 'MANAGER'},
-    {value: 'PRO', title: 'PRO'}
+  title: string = "Employee Master";
+  subtitle: string = "employee";
+  employee: any;
+  testt = [
+    { value: 'MANAGER', title: 'MANAGER' },
+    { value: 'CASHIER', title: 'CASHIER' },
+    { value: 'ACCOUNENT', title: 'ACCOUNENT' },
+    { value: 'HELPDESK', title: 'HELPDESK' }
   ]
-  
 
- 
 
-  
-  constructor(private encryptionService: EncryptionService ,public auth: AuthService, private crudService: EmployeeService,private EncryptDecrypt: EncryptDecryptService  ) {
-   
-   }
+
+
+
+  constructor(private encryptionService: EncryptionService, public auth: AuthService, private crudService: EmployeeService, private EncryptDecrypt: EncryptDecryptService) {
+
+  }
 
   ngOnInit() {
     window.dispatchEvent(new Event('resize'));
     document.body.className = 'hold-transition skin-purple sidebar-mini';
-    
+
     this.crudService.ReadEmployee().subscribe(data => {
-    
-      this.employee = data.map(e => {4
-        // var plaintext = tempdyc.toString(CryptoJS.enc.Utf8);
-        // console.log('tempdyc',plaintext);
-    return { 
-      
-      //aes.AES.decrypt(this.encryptText.trim(), this.decPassword.trim()).toString(CryptoJS.enc.Utf8)4
+
+      this.employee = data.map(e => {
+        return {
+
           id: e.payload.doc.id,
           doj: e.payload.doc.data()['doj'],
-          name:   this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['name']).toString(),
+          name: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['name']).toString(),
           age: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['age']).toString(),
           mobileNumber: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['mobileNumber']).toString(),
           designation: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['designation']).toString(),
-         // manager: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['manager']).toString(),
-          //referalCode:this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['referalCode']).toString(),
-          address: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['address']),
+          employeeCode: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['employeeCode']).toString(),
+          address: this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY, e.payload.doc.data()['address']).toString(),
         };
       })
     });
-   
-  }
-  
 
-  demoEncrypt(passphrase,data): Promise<string> {
+  }
+
+
+  demoEncrypt(passphrase, data): Promise<string> {
     return this.encryptionService.generateKey(passphrase).then(key => {
       return this.encryptionService.encrypt(data, key);
     });
   }
 
-  
-  SaveEmployee(recordRow){
-    console.log("SaveEmployee---->",recordRow);
-    let possible = "abcdefghijklmnopquerstuvwxyz1234567890*&^%$#@!";
-     let referc = "";
-    for (let i = 0; i <5; i++) {
-      referc +=  possible.charAt(Math.floor(Math.random() * possible.length));
+
+  SaveEmployee(recordRow) {
+    console.log("SaveEmployee---->", recordRow);
+    let possible = "ABCDEFGHIJKLMNOPQURSTUVWXYZABCD1234567890";
+    let referc = "";
+    for (let i = 0; i < 5; i++) {
+      referc += possible.charAt(Math.floor(Math.random() * possible.length));
     }
-    console.log("referc---->",referc);
+    console.log("referc---->", referc);
     //recordRow.newData.referalCode = recordRow.newData.name.substring(0,2)+ recordRow.newData.age+referc;
 
-   let record ={};
-    
-    record['address']= this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.address);
-    record['age']= this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.age);
-    record['designation']= this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.designation);
-   // record['doj']= recordRow.newData.doj;
-    record['mobileNumber']= this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.mobileNumber);
-    record['name']= this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.name);
-   // record['referalCode']=this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, referc);
-  // console.log("address---->", this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.address).toString());
-    
-    
-   //console.log("decrypt address---->",this.EncryptDecrypt.get(HASH_KEY.MY_PRIVATE_KEY,  'bWdYs3pIPRcqL8yfulWJwA=='));
-  // record['tempenc'] =  CryptoJS.AES.encrypt(recordRow.newData.name, HASH_KEY.MY_PRIVATE_KEY).toString();
-   //console.log('tempenc',record['address']);
-   this.crudService.SaveEmployee(record);
+    let record = {};
+    record['doj'] = recordRow.newData.doj;
+    record['name'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.name);
+
+    record['age'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.age);
+    record['mobileNumber'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.mobileNumber);
+    record['designation'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.designation);
+    record['address'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.address);
+    record['employeeCode'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY,'EMP-'+referc);
+    this.crudService.SaveEmployee(record);
 
   }
 
-  UpdateEmployee(recordRow){
-    console.log("UpdateEmployee---->",recordRow);
-    
-   this.crudService.UpdateEmployee(recordRow.newData.id, recordRow.newData); 
+  UpdateEmployee(recordRow) {
+    console.log("UpdateEmployee---->", recordRow);
+    let record = {};
+    record['doj'] = recordRow.newData.doj;
+    record['name'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.name);
+
+    record['age'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.age);
+    record['mobileNumber'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.mobileNumber);
+    record['designation'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.designation);
+    record['address'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY, recordRow.newData.address);
+    record['employeeCode'] = this.EncryptDecrypt.set(HASH_KEY.MY_PRIVATE_KEY,recordRow.newData.employeeCode);
+    this.crudService.UpdateEmployee(recordRow.newData.id, record);
   }
 
   settings = {
@@ -105,20 +105,20 @@ export class EmployeeComponent implements OnInit {
     hideHeader: false,
     hideSubHeader: false,
     actions: {
-      columnTitle: 'Actions             ',
+      columnTitle: 'Actions',
       add: true,
       edit: true,
       delete: false,
-      
+
       custom: [
-      
+
 
       ],
       position: 'left', // left|right
     },
-   attr:{
-    class:'table table-bordered table-striped'
-   },
+    attr: {
+      class: ''
+    },
     filter: {
       inputClass: '',
     },
@@ -143,26 +143,26 @@ export class EmployeeComponent implements OnInit {
     columns: {
       name: {
         title: 'Name',
-        width:'150px',   
+        width: '',
       },
       designation: {
         title: 'Post',
-        width:'100px',
+        width: '100px',
         type: 'html',
-        class:'select2-selection select2-selection--single',
+        class: 'select2-selection select2-selection--single',
         editor: {
           type: 'list',
           config: {
             list: this.testt,
           },
         }
-        
+
       },
       doj: {
         title: 'DOJ',
         type: 'custom',
         renderComponent: SmartTableDatepickerRenderComponent,
-        width: '150px',
+        width: '',
         filter: true,
         sortDirection: 'desc',
         editor: {
@@ -170,39 +170,39 @@ export class EmployeeComponent implements OnInit {
           component: SmartTableDatepickerComponent,
         }
       },
-      referalCode: {
-        title: 'Referal Code',
-        width:'95px',
-        editable:false,
+      employeeCode: {
+        title: 'Employee Code',
+        width: '',
+        editable: false,
         addable: false,
-      }, 
+      },
       mobileNumber: {
         title: 'Mobile no',
-        width:'110px', 
-      }, 
+        width: '',
+      },
       address: {
         title: 'Address',
-        width:'120px',
+        width: '',
       },
       age: {
         title: 'Age',
-        width:'80px',   
+        width: '',
       },
-     
-      
+
+
     },
     pager: {
       display: true,
       perPage: 5,
     },
-    editor:{
-      config:{ 
-          value: 'Element Value',
-          title: 'Element Title' 
+    editor: {
+      config: {
+        value: 'Element Value',
+        title: 'Element Title'
       }
     }
   };
- 
 
-  
+
+
 }
