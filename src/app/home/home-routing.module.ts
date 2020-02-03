@@ -7,6 +7,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { ComplaintComponent } from './complaint/complaint.component';
 import { AppSettingComponent } from './app-setting/app-setting.component';
 import { CityComponent } from './city/city.component';
+import { CustomerComponent } from './customer/customer.component';
 
 
 const routes: Routes = [
@@ -34,6 +35,11 @@ const routes: Routes = [
   {  
     path: 'appSetting', 
     component: AppSettingComponent, 
+    // canActivate: [AuthGuard] 
+  },
+  {  
+    path: 'customer', 
+    component: CustomerComponent, 
     // canActivate: [AuthGuard] 
   },
   {  

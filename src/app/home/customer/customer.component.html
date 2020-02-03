@@ -1,0 +1,56 @@
+<div class="wrapper">
+    <app-topnavbar></app-topnavbar>
+    <app-asidenavbar></app-asidenavbar>
+    <div class="content-wrapper">
+
+
+            <section class="content-header"> 
+                    <h1>
+                      {{title}}
+                      <small>View, add, update {{subtitle}} details </small>
+                    </h1>
+                    <ol class="breadcrumb">
+                      <li><a href="#"><i class="fa fa-users"></i> {{subtitle}}</a></li>
+                      <li><a href="#">details </a></li>
+                      <li class="active">view</li>
+                    </ol>
+            </section>
+                <section class="content">
+                        
+                <div class="col-xs-12">
+                        <div class="box">
+                           <div class="box-header">
+                            <h3 class="box-title">View Data</h3>
+               
+                            
+                          </div>
+                         
+                          <div class="box-body table-responsive no-padding">
+                                        
+                                <ng2-smart-table 
+                                [settings]="settings" 
+                                [source]="employee"
+                                (editConfirm) ="UpdateEmployee($event)"
+                                (createConfirm)="SaveEmployee($event)"
+                                 > 
+
+                                </ng2-smart-table> 
+                        </div>
+                        
+                        </div>
+                        
+                </div>
+                </section>
+            
+
+           
+          
+         
+
+           
+                 
+    </div>
+
+
+    <app-footernavbar></app-footernavbar>
+</div>

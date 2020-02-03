@@ -21,15 +21,7 @@ export class EmployeeService {
   UpdateEmployee(recordID,record){
     this.firestore.doc(FirebaseCollectionName.COLLECTION_EMPLOYEE+'/' + recordID).update(record);
   }
-  UpdateBlockedDriverData(recordID,record){
-    this.firestore.doc(FirebaseCollectionName.COLLECTION_EMPLOYEE+'/' + recordID).update(record);
-  }
-  UpdateBlockedUserData(collection,recordID,record){
-    this.firestore.doc(collection+'/' + recordID).update(record);
-  }
-  delete_Student(record_id) {
-    this.firestore.doc('complaints/' + record_id).delete();
-  }
+
 }
 
 
